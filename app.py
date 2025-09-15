@@ -167,10 +167,10 @@ def header() -> None:
         """
 <div class="bf-header">
   <div class="bf-left">
-    <span class="bf-logo-badge"></span><span>Brainfish</span>
+    <span class="bf-logo-badge"></span><span>Deckflow</span>
   </div>
   <div class="bf-links">
-    <a href="#">Why Brainfish</a>
+    <a href="#">Why Deckflow</a>
     <a href="#">Product</a>
     <a href="#">Solutions</a>
     <a href="#">Resources</a>
@@ -201,7 +201,7 @@ def footer() -> None:
     st.markdown(
         """
 <div class="bf-footer">
-  <p>© 2025 Brainfish Mock | Demo only</p>
+  <p>© 2025 Deckflow Mock | Demo only</p>
   <p><a href="#">Docs</a> | <a href="#">Blog</a> | <a href="#">Careers</a></p>
 </div>
 """,
