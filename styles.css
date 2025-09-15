@@ -1,27 +1,23 @@
-/* ===== Brainfish-ish theme (high contrast) ===== */
 :root{
     --sky-top:#c8f0ff;
     --sky-bot:#9fe2ff;
     --card:#ffffff;
-    --ink:#0a0f1a;         /* near-black text */
+    --ink:#0a0f1a;         
     --ink-dim:#33405f;
-    --line:#0a0f1a;        /* black outline */
-    --lime:#b2ff59;        /* CTA lime */
+    --line:#0a0f1a;        
+    --lime:#b2ff59;        
     --accent:#ff84b7;
     --radius:20px;
   }
   
-  /* Background sky */
   html,body,.stApp{
     background: linear-gradient(180deg,var(--sky-top),var(--sky-bot));
     color:var(--ink);
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   }
   
-  /* Max width + spacing */
   .block-container{ max-width:1120px; padding-top:8px; padding-bottom:64px; }
   
-  /* ===== Header (pill nav) ===== */
   .bf-header{
     display:flex; align-items:center; gap:18px;
     background:#fff;
@@ -39,7 +35,6 @@
   .bf-btn{ border:2px solid var(--line); background:#fff; color:var(--ink); padding:6px 12px; border-radius:12px; font-weight:800; }
   .bf-btn.cta{ background:var(--lime); }
   
-  /* ===== Hero ===== */
   .bf-hero{ text-align:center; padding:38px 16px 8px; position:relative; }
   .bf-chip{
     display:inline-flex; align-items:center; gap:8px;
@@ -58,13 +53,12 @@
   .bf-hero .btn.primary{ background:var(--lime); color:var(--ink); }
   .bf-hero .btn.secondary{ background:#fff; color:var(--ink); }
   
-  /* Clouds (multi-bubble with outlines) */
   .bf-cloud{ position:absolute; }
   .cloud{
     width:160px; height:54px; background:#fff; border:3px solid var(--line); border-radius:999px;
     box-shadow:
       46px -18px 0 0 #fff, 46px -18px 0 0 #fff inset,
-      46px -18px 0 0 #fff,  /* fill repeats */
+      46px -18px 0 0 #fff, 
       -38px -12px 0 0 #fff,
       0 0 0 3px var(--line) inset;
   }
@@ -73,14 +67,12 @@
   .c3{ bottom:18px; left:14%; transform:scale(1.0); }
   .c4{ bottom:38px; right:10%; transform:scale(0.85); }
   
-  /* ===== Cards / sections ===== */
   section.main > div > div{
     background:#fff; border:3px solid var(--line); border-radius:var(--radius);
     padding:20px; margin-bottom:18px; box-shadow:0 6px 0 #00000022;
   }
   h2{ font-size:24px; margin:0 0 10px; }
   
-  /* Inputs */
   .stTextInput > div > div input,
   .stTextArea textarea,
   .stSelectbox [data-baseweb="select"] > div{
@@ -88,10 +80,8 @@
   }
   .stTextInput label, .stTextArea label{ color:var(--ink-dim); font-weight:700; }
   
-  /* File uploader */
   [data-testid="stFileUploader"]{ border:2px dashed var(--line); background:#fff; border-radius:14px; padding:14px; }
   
-  /* Buttons */
   .stButton > button[kind="primary"]{
     background:var(--lime); color:var(--ink);
     border:3px solid var(--line); border-radius:14px; padding:.7rem 1.2rem; font-weight:900;
@@ -100,7 +90,6 @@
     background:#fff; color:var(--ink); border:2px solid var(--line); border-radius:14px; padding:.55rem 1rem; font-weight:800;
   }
   
-  /* Tabs */
   [data-baseweb="tab-list"]{ gap:8px; }
   [data-baseweb="tab"]{
     background:#fff; color:var(--ink); border:2px solid var(--line); border-bottom:none;
@@ -110,10 +99,8 @@
     background:#fff; border:2px solid var(--line); border-top:none; border-radius:0 14px 14px 14px; padding:16px;
   }
   
-  /* Code */
   code,pre,.stCode{ background:#f7f9ff !important; color:var(--ink) !important; border:2px solid var(--line); border-radius:12px !important; }
   
-  /* ===== Footer ===== */
   .bf-footer{
     margin-top:36px; padding:20px; background:#fff; border-top:3px solid var(--line);
     text-align:center; color:var(--ink-dim);
@@ -121,7 +108,6 @@
   .bf-footer a{ color:var(--ink); text-decoration:none; font-weight:800; margin:0 8px; }
   .bf-footer a:hover{ color:var(--accent); }
   
-  /* Fix file uploader styling for readability */
 [data-testid="stFileUploader"] {
     border: 3px dashed var(--line) !important;
     background: #fff !important;
@@ -132,14 +118,12 @@
     box-shadow: 0 4px 0 #00000015;
   }
   
-  /* Label ("PDF or PPTX") */
   [data-testid="stFileUploader"] label {
     color: var(--ink) !important;
     font-weight: 800;
     margin-bottom: 6px !important;
   }
   
-  /* Drop zone text */
   [data-testid="stFileUploader"] section {
     background: #f9faff !important;
     border: 2px solid var(--line) !important;
@@ -148,7 +132,6 @@
     font-weight: 600;
   }
   
-  /* Button inside uploader */
   [data-testid="stFileUploader"] button {
     background: var(--lime) !important;
     border: 2px solid var(--line) !important;
@@ -157,42 +140,34 @@
     font-weight: 800 !important;
   }
   
-  /* File uploader - make drag text black */
 [data-testid="stFileUploader"] section div {
-    color: var(--ink) !important;   /* black text */
+    color: var(--ink) !important;   
     font-weight: 700 !important;
   }
   
   [data-testid="stFileUploader"] section span {
-    color: var(--ink) !important;   /* also black for subtext */
+    color: var(--ink) !important;  
   }
   
-  /* Hide Streamlit top toolbar */
 [data-testid="stToolbar"],
 [data-testid="stDecoration"],
 header[data-testid="stHeader"]{
   display: none !important;
 }
 
-/* Pull content to the very top */
 .block-container{ padding-top: 16px !important; }
 
-/* Keep Streamlit toolbar, push header below it */
 .block-container{ padding-top: 72px !important; }
 
-/* Make the pill header sticky so it never gets cut */
 .bf-header{
   position: sticky;
   top: 16px;
   z-index: 1000;
 }
-/* Prevent any clipping of rounded header */
 .bf-header{ margin-top: 12px; overflow: visible; }
 
-/* Ensure clouds never overlap the header */
 .bf-hero{ margin-top: 8px; }
 
-/* Make footer stick to bottom */
 html, body, .stApp {
     height: 100%;
     display: flex;
@@ -200,11 +175,11 @@ html, body, .stApp {
   }
   
   .block-container {
-    flex: 1 0 auto;   /* main content grows */
+    flex: 1 0 auto;   
   }
   
   .bf-footer {
-    flex-shrink: 0;   /* footer stays at bottom */
+    flex-shrink: 0;  
     margin-top: auto;
     background: #fff;
     border-top: 3px solid var(--line);
@@ -213,7 +188,6 @@ html, body, .stApp {
     color: var(--ink-dim);
   }
   
-  /* Fixed footer */
 .bf-footer{
     position: fixed !important;
     left: 0; right: 0; bottom: 0;
@@ -225,27 +199,26 @@ html, body, .stApp {
     color: var(--ink-dim);
   }
   
-  /* Prevent overlap with fixed footer (adjust if needed) */
   .block-container{ padding-bottom: 80px !important; }
   
-  /* Compact footer */
+
 .bf-footer {
     margin-top: auto !important;
     flex-shrink: 0 !important;
     background: #fff;
     border-top: 2px solid var(--line);
     text-align: center;
-    padding: 8px 12px;        /* smaller padding */
-    font-size: 13px;          /* smaller text */
+    padding: 8px 12px;       
+    font-size: 13px;          
     color: var(--ink-dim);
   }
   
   .bf-footer a {
     margin: 0 6px;
-    font-size: 13px;          /* match smaller size */
+    font-size: 13px;          
   }
   .bf-footer {
-    margin-top: 40px !important;   /* more gap above footer */
+    margin-top: 40px !important;   
     padding: 8px 12px;
     font-size: 13px;
     color: var(--ink-dim);
@@ -253,12 +226,9 @@ html, body, .stApp {
     border-top: 2px solid var(--line);
     text-align: center;
   }
-  /* Extra bottom space before footer */
 .block-container {
-    padding-bottom: 200px !important;   /* increase this if you want more */
+    padding-bottom: 200px !important;   
   }
-  /* Force uploader text to black */
-  /* Make uploaded filename + size black, across Streamlit variants */
   [data-testid="stFileUploader"] [data-testid="stFileUploaderFileDetails"],
   [data-testid="stFileUploader"] [data-testid="stFileUploaderFileDetails"] *,
   [data-testid="stFileUploader"] [data-testid="stUploadedFile"],
@@ -274,13 +244,11 @@ html, body, .stApp {
     color: var(--ink) !important;
   }
 
-  /* If the size is inside aria-live region */
   [data-testid="stFileUploader"] [aria-live="polite"],
   [data-testid="stFileUploader"] [aria-live="polite"] * {
     color: var(--ink) !important;
   }
 
-  /* Some builds render the pill using BaseWeb Tag — force black */
   [data-testid="stFileUploader"] [data-baseweb="tag"],
   [data-testid="stFileUploader"] [data-baseweb="tag"] * {
     color: var(--ink) !important;
@@ -289,12 +257,10 @@ html, body, .stApp {
     border-radius: 10px !important;
   }
 
-  /* Final safety net: make all non-button text inside uploader black */
   [data-testid="stFileUploader"] *:not(button):not(svg):not(path) {
     color: var(--ink) !important;
   }
 
-  /* Expander header (Step 3 & 4) */
 [data-testid="stExpander"] summary {
   background: #fff !important;
   color: var(--ink) !important;
@@ -303,10 +269,9 @@ html, body, .stApp {
   border-radius: 12px !important;
   padding: 10px 14px !important;
   font-weight: 800 !important;
-  list-style: none !important; /* hide default marker */
+  list-style: none !important;
 }
 
-/* Make all header text/icons readable */
 [data-testid="stExpander"] summary * {
   color: var(--ink) !important;
   -webkit-text-fill-color: var(--ink) !important;
@@ -314,10 +279,8 @@ html, body, .stApp {
   stroke: var(--ink) !important;
 }
 
-/* Remove default disclosure arrow (Safari/Chrome) */
 [data-testid="stExpander"] summary::-webkit-details-marker { display: none !important; }
 
-/* Expander content panel */
 [data-testid="stExpander"] div[role="region"] {
   background: #fff !important;
   color: var(--ink) !important;
@@ -327,11 +290,9 @@ html, body, .stApp {
   padding: 12px 16px !important;
 }
 
-/* Hover/focus states */
 [data-testid="stExpander"] summary:hover { background: #f7f9ff !important; }
 [data-testid="stExpander"] summary:focus { outline: 2px solid var(--line) !important; outline-offset: 2px; }
 
-/* Force form labels (e.g., Tone) to be black */
 .stSelectbox label,
 .stTextInput label,
 .stTextArea label,
@@ -339,9 +300,8 @@ html, body, .stApp {
   color: var(--ink) !important;
   font-weight: 700 !important;
 }
-/* Style the spinner container box */
 [data-testid="stSpinner"] {
-  background: var(--lime) !important;   /* your green */
+  background: var(--lime) !important;   
   border: 2px solid var(--line) !important;
   border-radius: 12px !important;
   color: var(--ink) !important;
@@ -351,20 +311,18 @@ html, body, .stApp {
 }
 
 
-/* Green pill with text */
 .bf-logo-badge{
   display:inline-flex; align-items:center; justify-content:center;
   padding:4px 12px;
   background: var(--lime);
   color: var(--ink);
   border: 3px solid var(--line);
-  border-radius: 14px 22px 22px 14px; /* fishy capsule */
+  border-radius: 14px 22px 22px 14px;
   font-weight: 900;
   letter-spacing: .2px;
-  min-width: 108px; /* keeps shape consistent */
+  min-width: 108px; 
 }
 
-/* Chip upgrade */
 .bf-chip{
   display:inline-block;
   background:#fff;
@@ -375,7 +333,6 @@ html, body, .stApp {
   font-weight:800;
 }
 
-/* Impact bar */
 .bf-stats{
   display:flex; gap:12px; justify-content:center; margin:14px 0 6px;
   flex-wrap:wrap;
@@ -392,12 +349,11 @@ html, body, .stApp {
 .bf-stat strong{ font-size:18px; line-height:1; }
 .bf-stat span{ font-size:12px; color:var(--ink-dim); margin-top:4px; }
 
-/* Green Deckflow badge */
 .bf-logo-badge {
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:20px 16px;            /* was 4px 12px → more breathing room */
+  padding:20px 16px;            
   background: var(--lime);
   color: var(--ink);
   border: 3px solid var(--line);
@@ -405,18 +361,16 @@ html, body, .stApp {
   font-weight: 900;
   letter-spacing: .2px;
 }
-/* Hero container spacing */
 .bf-hero {
   text-align:center;
-  padding:38px 16px 48px;   /* increased bottom padding */
+  padding:38px 16px 48px;   
   position:relative;
 }
 .bf-stats {
-  margin:45px 0 60px;   /* bottom gap below stats */
+  margin:45px 0 60px;   
 }
 
 
-/* Hero list under subtitle */
 .bf-list {
   list-style: none;
   padding: 0;
@@ -437,39 +391,35 @@ html, body, .stApp {
 }
 
 .bf-list li::before {
-  content: "➜";   /* arrow bullet */
+  content: "➜";   
   color: var(--ink);
   font-weight: 900;
   margin-right: 6px;
 }
-/* Make text input cursor (caret) black */
 .stTextInput input,
 .stTextArea textarea,
 .stSelectbox input {
-  caret-color: var(--ink) !important;   /* black cursor */
+  caret-color: var(--ink) !important;  
 }
 
 
-/* Center the Step 2 form and make inputs narrower */
 .step-form {
-  max-width: 500px;       /* controls width */
-  margin: 0 auto;         /* center horizontally */
+  max-width: 500px;       
+  margin: 0 auto;        
 }
 
-/* Ensure inputs/buttons inside follow the container width */
 .step-form .stTextInput,
 .step-form .stTextArea,
 .step-form .stSelectbox,
 .step-form .stButton {
   width: 100% !important;
 }
-/* Center step sections */
 .step-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 30px auto;
-  max-width: 600px;   /* keeps it neat */
+  max-width: 600px;  
   width: 100%;
   text-align: center;
 }

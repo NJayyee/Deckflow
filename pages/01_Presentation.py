@@ -2,16 +2,14 @@
 import os
 import json
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Dict, List, Any
 
 import streamlit as st
 import pdfplumber
 from pptx import Presentation
 from openai import OpenAI
 
-
-# Session state (persist result)
-
+# Session state
 if "final" not in st.session_state:
     st.session_state.final = None
 if "txt_content" not in st.session_state:
@@ -21,9 +19,7 @@ if "last_outline" not in st.session_state:
 if "scroll_to_agent" not in st.session_state:
     st.session_state.scroll_to_agent = False
 
-
 # Config
-
 MODEL = "gpt-4o-mini"
 OUTPUT_SCHEMA_HINT = {
     "emails": [{"subject": "string", "body": "string", "cta": "string"}],
@@ -31,9 +27,7 @@ OUTPUT_SCHEMA_HINT = {
     "script": "string",
 }
 
-
-# Utilities
-
+# Utils
 def load_css(path: str) -> None:
     try:
         css = Path(path).read_text(encoding="utf-8")
@@ -43,7 +37,7 @@ def load_css(path: str) -> None:
 
 def get_qs(key: str, default: str) -> str:
     try:
-        return st.query_params.get(key, default)
+        return st.query_params.get(key, default)  
     except Exception:
         qp = st.experimental_get_query_params()
         return qp.get(key, [default])[0]
@@ -67,9 +61,7 @@ def inject_scroll_to(anchor_id: str) -> None:
         unsafe_allow_html=True,
     )
 
-
-# File extraction
-
+# Extractors
 def extract_pdf_text(path: str) -> str:
     parts: List[str] = []
     with pdfplumber.open(path) as pdf:
@@ -100,9 +92,7 @@ def to_outline(raw: str) -> Dict[str, Any]:
     slides = [{"index": i + 1, "text": s} for i, s in enumerate(chunks[:60])]
     return {"slides": slides}
 
-
 # OpenAI helpers
-
 def openai_client() -> OpenAI:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
@@ -135,9 +125,8 @@ def coerce_json(text: str) -> dict:
     start = t.find("{")
     end = t.rfind("}")
     if start != -1 and end != -1 and end > start:
-        snippet = t[start:end + 1]
         try:
-            return json.loads(snippet)
+            return json.loads(t[start:end + 1])
         except Exception:
             st.error("Model returned invalid JSON. Try again or simplify style notes.")
             st.stop()
@@ -236,8 +225,7 @@ def format_output_txt(data: dict) -> str:
     lines.append((data.get("script") or "").strip())
     return "\n".join(lines)
 
-
-# UI: header / hero / footer
+# UI blocks
 def header_nav() -> None:
     st.markdown(
         """
@@ -248,9 +236,13 @@ def header_nav() -> None:
   <div class="bf-links">
     <a href="?page=presentation">Why Deckflow</a>
     <a href="?page=main">Product</a>
+    <a href="#">Solutions</a>
+    <a href="#">Resources</a>
+    <a href="#">Pricing</a>
   </div>
   <div class="bf-right">
-    <button class="bf-btn cta" onclick="window.parent.location.search='?page=main&scroll=agent'">Sign in</button>
+    <button class="bf-btn">Sign in</button>
+    <button class="bf-btn cta" onclick="window.parent.location.search='?page=main&scroll=agent'">Book Demo</button>
   </div>
 </div>
 """,
@@ -264,7 +256,7 @@ def hero_main() -> None:
   <div class="bf-chip">Built for GTM teams • Deck → Outbound in minutes</div>
   <h1 class="bf-h1">Turn Sales Presentations into Outbound Sequences</h1>
   <div class="bf-stats">
-    <div class="bf-stat"><strong>6h → 1m</strong><span>Time to first draft</span></div>
+    <div class="bf-stat"><strong>6h → 10m</strong><span>Time to first draft</span></div>
     <div class="bf-stat"><strong>1 CTA</strong><span>Per email, enforced</span></div>
     <div class="bf-stat"><strong>Proof-tied</strong><span>Claims from your deck</span></div>
   </div>
@@ -279,17 +271,16 @@ def hero_main() -> None:
         unsafe_allow_html=True,
     )
 
-    left, b1col, b2col, right = st.columns([1, 0.32, 0.32, 1])
-    with b1col:
+    left, b1, b2, right = st.columns([1, 0.32, 0.32, 1])
+    with b1:
         if st.button("Try Now", type="primary", key="btn_try_now"):
             set_qs(page="main")
             st.session_state.scroll_to_agent = True
             st.rerun()
-    with b2col:
+    with b2:
         if st.button("See Why", key="btn_see_why"):
             set_qs(page="presentation")
             st.rerun()
-
 
 def hero_presentation() -> None:
     st.markdown(
@@ -302,9 +293,6 @@ def hero_presentation() -> None:
 """,
         unsafe_allow_html=True,
     )
-    if st.button("Back to Product", use_container_width=True, key="btn_back_to_product"):
-        set_qs(page="main", scroll="agent")
-        st.rerun()
 
 def footer() -> None:
     st.markdown(
@@ -317,46 +305,42 @@ def footer() -> None:
         unsafe_allow_html=True,
     )
 
-
 # Pages
-
 def show_main_page() -> None:
     hero_main()
 
     st.markdown('<div id="agent"></div>', unsafe_allow_html=True)
 
-    # smooth scroll triggers
     if st.session_state.scroll_to_agent:
         inject_scroll_to("agent")
         st.session_state.scroll_to_agent = False
     if get_qs("scroll", "") == "agent":
         inject_scroll_to("agent")
-        # clear the param after use
         set_qs(page="main")
 
-    # Step 1
     l1, c1, r1 = st.columns([1, 2, 1], gap="large")
     with c1:
         st.markdown('<h2 style="text-align:center;">Step 1. Upload your sales deck</h2>', unsafe_allow_html=True)
         uploaded = st.file_uploader("PDF or PPTX", type=["pdf", "pptx"])
 
-    # Step 2
     l2, c2, r2 = st.columns([1, 2, 1], gap="large")
     with c2:
         st.markdown('<h2 style="text-align:center;">Step 2. Set persona and voice</h2>', unsafe_allow_html=True)
         persona = st.text_input("Target persona", "Head of Operations")
-        tone = st.selectbox("Tone", ["Professional", "Friendly", "Direct", "Technical"])
+        tone = st.selectbox("Tone", ["Professional", "Friendly", "Direct, Technical".split(", ")[2]])  
+        
+    st.session_state.setdefault("tone_options", ["Professional", "Friendly", "Direct", "Technical"])
+    with c2:
+        tone = st.selectbox("Tone", st.session_state["tone_options"], index=0)
         style = st.text_area("Brand voice notes", "Clear, concise, value focused.", height=80)
-        run = st.button("Generate", type="primary", use_container_width=True, key="generate_btn")
+        run = st.button("Generate", type="primary", key="generate_btn")
 
-    # Gate
     if st.session_state.final is None and not run:
         return
     if st.session_state.final is None and not uploaded:
         st.warning("Upload a deck first.")
         return
 
-    # Heavy work (once)
     if run and st.session_state.final is None:
         with st.container():
             st.header("Step 3. We read your deck")
@@ -410,10 +394,8 @@ def show_main_page() -> None:
             st.session_state.final = final
             st.session_state.txt_content = format_output_txt(final)
 
-    # Results (from cache)
     if st.session_state.final is not None:
         final = st.session_state.final
-
         with st.container():
             st.header("Results")
             tabs = st.tabs(["Emails", "LinkedIn", "Talk track", "JSON"])
@@ -448,7 +430,6 @@ def show_main_page() -> None:
                     data=st.session_state.txt_content,
                     file_name="outbound.txt",
                     mime="text/plain",
-                    use_container_width=True,
                     key="dl_txt",
                 )
             with c2:
@@ -457,7 +438,6 @@ def show_main_page() -> None:
                     data=json.dumps(final, ensure_ascii=False, indent=2),
                     file_name="outbound.json",
                     mime="application/json",
-                    use_container_width=True,
                     key="dl_json",
                 )
 
@@ -484,7 +464,7 @@ def show_presentation_page() -> None:
             "- A 5 step email sequence with one clear CTA per email\n"
             "- Three LinkedIn posts\n"
             "- A 90 second talk track\n"
-            "All claims map to proofs extracted from the deck."
+            "All claims must map to proofs extracted from the deck."
         )
 
     with st.container():
@@ -498,6 +478,18 @@ def show_presentation_page() -> None:
 
     with st.container():
         st.header("Return on investment")
+        st.markdown(
+            """
+            <div style="
+                background:#ffffff;
+                border:1px solid #ddd;
+                border-radius:12px;
+                padding:20px;
+                margin-bottom:20px;
+                box-shadow:0 1px 2px rgba(0,0,0,0.03);">
+            """,
+            unsafe_allow_html=True,
+        )
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric("Time saved", "4–6 hrs/wk", "per marketer")
@@ -506,16 +498,17 @@ def show_presentation_page() -> None:
         with col3:
             st.metric("Edit cycles", "-50%", "fewer rounds")
         st.write(
-            "Example: a team of 3 marketers saves 12–18 hours a week. At $80 per hour, that can be $960 to $1,440 in weekly value, plus faster launches."
-            ""
+            "Example: a team of 3 marketers saves 12–18 hours a week. "
+            "At $80/hour, that’s $960–$1,440 in weekly value, plus faster launches."
         )
+        st.markdown("</div>", unsafe_allow_html=True)
 
     with st.container():
-        st.header("Clean and simple UI/UX")
+        st.header("Clean and simple UI and UX")
         st.write(
             "- One page to upload and set voice\n"
             "- Tabs for emails, LinkedIn, and talk track\n"
-            "- Download TXT for sharing, JSON for systems"
+            "- Download TXT for quick sharing, JSON for systems"
         )
 
     with st.container():
@@ -525,7 +518,7 @@ def show_presentation_page() -> None:
             "2 Pick persona and tone, add brand notes\n"
             "3 The agent extracts proofs and builds a brief\n"
             "4 The agent generates drafts and applies guardrails\n"
-            "5 You review, export TXT/JSON, and ship"
+            "5 You review, export TXT or JSON, and ship"
         )
 
     with st.container():
@@ -535,29 +528,41 @@ def show_presentation_page() -> None:
             "- Plan brief from deck outline\n"
             "- Generate emails, posts, and script\n"
             "- Guardrails enforce proofs and tone\n"
-            "- Validate length and structure"
+            "- Validate length and structure before output"
         )
 
     with st.container():
         st.header("Decision making")
         st.write(
-            "- Chose deck → outbound for clear value and speed to impact\n"
-            "- JSON + TXT outputs serve both humans and systems\n"
+            "- Chose deck to outbound because the problem is common and the value is clear\n"
+            "- JSON and TXT outputs serve both humans and systems\n"
             "- Kept UI focused to reduce friction\n"
             "- Guardrails reduce legal and compliance risk"
         )
 
     with st.container():
+        st.header("Risks and mitigations")
+        st.write(
+            "- Low text in slides, mitigation use speaker notes or another deck\n"
+            "- Brand voice mismatch, mitigation brand notes and tone selector\n"
+            "- Overclaims, mitigation proofs only rule and review pass"
+        )
+
+    with st.container():
         st.header("Roadmap")
         st.write(
-            "- Subject line A/B suggestions\n"
-            "- CRM export helpers (HubSpot, Salesforce blocks)\n"
+            "- A/B subject testing suggestions\n"
+            "- CRM export helpers for HubSpot and Salesforce copy blocks\n"
             "- Team presets for voice and CTAs\n"
             "- PDF export with brand header and footer"
         )
 
-
-# App entry
+    with st.container():
+        left, mid, right = st.columns([1, 2, 1])
+        with mid:
+            if st.button("Back to Product", key="btn_back_bottom"):
+                set_qs(page="main", scroll="agent")
+                st.rerun()
 
 def main() -> None:
     st.set_page_config(page_title="Deckflow", page_icon="📨", layout="centered")
