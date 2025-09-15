@@ -1,0 +1,359 @@
+/* ===== Brainfish-ish theme (high contrast) ===== */
+:root{
+    --sky-top:#c8f0ff;
+    --sky-bot:#9fe2ff;
+    --card:#ffffff;
+    --ink:#0a0f1a;         /* near-black text */
+    --ink-dim:#33405f;
+    --line:#0a0f1a;        /* black outline */
+    --lime:#b2ff59;        /* CTA lime */
+    --accent:#ff84b7;
+    --radius:20px;
+  }
+  
+  /* Background sky */
+  html,body,.stApp{
+    background: linear-gradient(180deg,var(--sky-top),var(--sky-bot));
+    color:var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  }
+  
+  /* Max width + spacing */
+  .block-container{ max-width:1120px; padding-top:8px; padding-bottom:64px; }
+  
+  /* ===== Header (pill nav) ===== */
+  .bf-header{
+    display:flex; align-items:center; gap:18px;
+    background:#fff;
+    border:3px solid var(--line);
+    border-radius:999px;
+    padding:10px 16px;
+    margin:12px auto 26px;
+    box-shadow:0 6px 0 #00000022;
+  }
+  .bf-left{ display:flex; align-items:center; gap:10px; font-weight:900; }
+  .bf-logo-badge{ width:28px; height:20px; background:#8afc5a; border:3px solid var(--line); border-radius:12px 18px 18px 12px; }
+  .bf-links{ display:flex; gap:18px; margin-left:6px; }
+  .bf-links a{ color:var(--ink); text-decoration:none; font-weight:800; }
+  .bf-right{ margin-left:auto; display:flex; gap:10px; }
+  .bf-btn{ border:2px solid var(--line); background:#fff; color:var(--ink); padding:6px 12px; border-radius:12px; font-weight:800; }
+  .bf-btn.cta{ background:var(--lime); }
+  
+  /* ===== Hero ===== */
+  .bf-hero{ text-align:center; padding:38px 16px 8px; position:relative; }
+  .bf-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    background:#fff; border:2px solid var(--line); border-radius:999px;
+    padding:8px 14px; font-weight:800;
+  }
+  .bf-h1{
+    font-size:56px; line-height:1.04; margin:18px auto 8px; max-width:980px;
+    font-weight:900; color:var(--ink);
+  }
+  .bf-sub{ color:var(--ink-dim); font-size:18px; max-width:860px; margin:0 auto 18px; }
+  .bf-hero .btns{ display:flex; gap:12px; justify-content:center; }
+  .bf-hero .btn{
+    border:2px solid var(--line); border-radius:12px; padding:10px 16px; font-weight:900; text-decoration:none;
+  }
+  .bf-hero .btn.primary{ background:var(--lime); color:var(--ink); }
+  .bf-hero .btn.secondary{ background:#fff; color:var(--ink); }
+  
+  /* Clouds (multi-bubble with outlines) */
+  .bf-cloud{ position:absolute; }
+  .cloud{
+    width:160px; height:54px; background:#fff; border:3px solid var(--line); border-radius:999px;
+    box-shadow:
+      46px -18px 0 0 #fff, 46px -18px 0 0 #fff inset,
+      46px -18px 0 0 #fff,  /* fill repeats */
+      -38px -12px 0 0 #fff,
+      0 0 0 3px var(--line) inset;
+  }
+  .c1{ top:20px; left:10%; transform:scale(1.1); }
+  .c2{ top:90px; right:14%; transform:scale(0.9); }
+  .c3{ bottom:18px; left:14%; transform:scale(1.0); }
+  .c4{ bottom:38px; right:10%; transform:scale(0.85); }
+  
+  /* ===== Cards / sections ===== */
+  section.main > div > div{
+    background:#fff; border:3px solid var(--line); border-radius:var(--radius);
+    padding:20px; margin-bottom:18px; box-shadow:0 6px 0 #00000022;
+  }
+  h2{ font-size:24px; margin:0 0 10px; }
+  
+  /* Inputs */
+  .stTextInput > div > div input,
+  .stTextArea textarea,
+  .stSelectbox [data-baseweb="select"] > div{
+    background:#fff; border:2px solid var(--line); border-radius:12px; color:var(--ink);
+  }
+  .stTextInput label, .stTextArea label{ color:var(--ink-dim); font-weight:700; }
+  
+  /* File uploader */
+  [data-testid="stFileUploader"]{ border:2px dashed var(--line); background:#fff; border-radius:14px; padding:14px; }
+  
+  /* Buttons */
+  .stButton > button[kind="primary"]{
+    background:var(--lime); color:var(--ink);
+    border:3px solid var(--line); border-radius:14px; padding:.7rem 1.2rem; font-weight:900;
+  }
+  .stButton > button, .stDownloadButton > button{
+    background:#fff; color:var(--ink); border:2px solid var(--line); border-radius:14px; padding:.55rem 1rem; font-weight:800;
+  }
+  
+  /* Tabs */
+  [data-baseweb="tab-list"]{ gap:8px; }
+  [data-baseweb="tab"]{
+    background:#fff; color:var(--ink); border:2px solid var(--line); border-bottom:none;
+    border-radius:14px 14px 0 0; padding:.55rem .95rem; font-weight:900;
+  }
+  [data-baseweb="tab-panel"]{
+    background:#fff; border:2px solid var(--line); border-top:none; border-radius:0 14px 14px 14px; padding:16px;
+  }
+  
+  /* Code */
+  code,pre,.stCode{ background:#f7f9ff !important; color:var(--ink) !important; border:2px solid var(--line); border-radius:12px !important; }
+  
+  /* ===== Footer ===== */
+  .bf-footer{
+    margin-top:36px; padding:20px; background:#fff; border-top:3px solid var(--line);
+    text-align:center; color:var(--ink-dim);
+  }
+  .bf-footer a{ color:var(--ink); text-decoration:none; font-weight:800; margin:0 8px; }
+  .bf-footer a:hover{ color:var(--accent); }
+  
+  /* Fix file uploader styling for readability */
+[data-testid="stFileUploader"] {
+    border: 3px dashed var(--line) !important;
+    background: #fff !important;
+    border-radius: 14px !important;
+    padding: 16px !important;
+    color: var(--ink) !important;
+    font-weight: 700;
+    box-shadow: 0 4px 0 #00000015;
+  }
+  
+  /* Label ("PDF or PPTX") */
+  [data-testid="stFileUploader"] label {
+    color: var(--ink) !important;
+    font-weight: 800;
+    margin-bottom: 6px !important;
+  }
+  
+  /* Drop zone text */
+  [data-testid="stFileUploader"] section {
+    background: #f9faff !important;
+    border: 2px solid var(--line) !important;
+    border-radius: 12px !important;
+    color: var(--ink) !important;
+    font-weight: 600;
+  }
+  
+  /* Button inside uploader */
+  [data-testid="stFileUploader"] button {
+    background: var(--lime) !important;
+    border: 2px solid var(--line) !important;
+    color: var(--ink) !important;
+    border-radius: 8px !important;
+    font-weight: 800 !important;
+  }
+  
+  /* File uploader - make drag text black */
+[data-testid="stFileUploader"] section div {
+    color: var(--ink) !important;   /* black text */
+    font-weight: 700 !important;
+  }
+  
+  [data-testid="stFileUploader"] section span {
+    color: var(--ink) !important;   /* also black for subtext */
+  }
+  
+  /* Hide Streamlit top toolbar */
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+header[data-testid="stHeader"]{
+  display: none !important;
+}
+
+/* Pull content to the very top */
+.block-container{ padding-top: 16px !important; }
+
+/* Keep Streamlit toolbar, push header below it */
+.block-container{ padding-top: 72px !important; }
+
+/* Make the pill header sticky so it never gets cut */
+.bf-header{
+  position: sticky;
+  top: 16px;
+  z-index: 1000;
+}
+/* Prevent any clipping of rounded header */
+.bf-header{ margin-top: 12px; overflow: visible; }
+
+/* Ensure clouds never overlap the header */
+.bf-hero{ margin-top: 8px; }
+
+/* Make footer stick to bottom */
+html, body, .stApp {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .block-container {
+    flex: 1 0 auto;   /* main content grows */
+  }
+  
+  .bf-footer {
+    flex-shrink: 0;   /* footer stays at bottom */
+    margin-top: auto;
+    background: #fff;
+    border-top: 3px solid var(--line);
+    text-align: center;
+    padding: 20px;
+    color: var(--ink-dim);
+  }
+  
+  /* Fixed footer */
+.bf-footer{
+    position: fixed !important;
+    left: 0; right: 0; bottom: 0;
+    z-index: 1000;
+    background: #fff;
+    border-top: 3px solid var(--line);
+    text-align: center;
+    padding: 14px 20px;
+    color: var(--ink-dim);
+  }
+  
+  /* Prevent overlap with fixed footer (adjust if needed) */
+  .block-container{ padding-bottom: 80px !important; }
+  
+  /* Compact footer */
+.bf-footer {
+    margin-top: auto !important;
+    flex-shrink: 0 !important;
+    background: #fff;
+    border-top: 2px solid var(--line);
+    text-align: center;
+    padding: 8px 12px;        /* smaller padding */
+    font-size: 13px;          /* smaller text */
+    color: var(--ink-dim);
+  }
+  
+  .bf-footer a {
+    margin: 0 6px;
+    font-size: 13px;          /* match smaller size */
+  }
+  .bf-footer {
+    margin-top: 40px !important;   /* more gap above footer */
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--ink-dim);
+    background: #fff;
+    border-top: 2px solid var(--line);
+    text-align: center;
+  }
+  /* Extra bottom space before footer */
+.block-container {
+    padding-bottom: 200px !important;   /* increase this if you want more */
+  }
+  /* Force uploader text to black */
+  /* Make uploaded filename + size black, across Streamlit variants */
+  [data-testid="stFileUploader"] [data-testid="stFileUploaderFileDetails"],
+  [data-testid="stFileUploader"] [data-testid="stFileUploaderFileDetails"] *,
+  [data-testid="stFileUploader"] [data-testid="stUploadedFile"],
+  [data-testid="stFileUploader"] [data-testid="stUploadedFile"] *,
+  [data-testid="stFileUploader"] [data-testid="stFileName"],
+  [data-testid="stFileUploader"] [data-testid="stFileName"] *,
+  [data-testid="stFileUploader"] [data-testid="stFileSize"],
+  [data-testid="stFileUploader"] [data-testid="stFileSize"] *,
+  [data-testid="stFileUploader"] .uploadedFile,
+  [data-testid="stFileUploader"] .uploadedFile * ,
+  [data-testid="stFileUploader"] small,
+  [data-testid="stFileUploader"] p {
+    color: var(--ink) !important;
+  }
+
+  /* If the size is inside aria-live region */
+  [data-testid="stFileUploader"] [aria-live="polite"],
+  [data-testid="stFileUploader"] [aria-live="polite"] * {
+    color: var(--ink) !important;
+  }
+
+  /* Some builds render the pill using BaseWeb Tag — force black */
+  [data-testid="stFileUploader"] [data-baseweb="tag"],
+  [data-testid="stFileUploader"] [data-baseweb="tag"] * {
+    color: var(--ink) !important;
+    background: #fff !important;
+    border: 2px solid var(--line) !important;
+    border-radius: 10px !important;
+  }
+
+  /* Final safety net: make all non-button text inside uploader black */
+  [data-testid="stFileUploader"] *:not(button):not(svg):not(path) {
+    color: var(--ink) !important;
+  }
+
+  /* Expander header (Step 3 & 4) */
+[data-testid="stExpander"] summary {
+  background: #fff !important;
+  color: var(--ink) !important;
+  -webkit-text-fill-color: var(--ink) !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  font-weight: 800 !important;
+  list-style: none !important; /* hide default marker */
+}
+
+/* Make all header text/icons readable */
+[data-testid="stExpander"] summary * {
+  color: var(--ink) !important;
+  -webkit-text-fill-color: var(--ink) !important;
+  fill: var(--ink) !important;
+  stroke: var(--ink) !important;
+}
+
+/* Remove default disclosure arrow (Safari/Chrome) */
+[data-testid="stExpander"] summary::-webkit-details-marker { display: none !important; }
+
+/* Expander content panel */
+[data-testid="stExpander"] div[role="region"] {
+  background: #fff !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--line) !important;
+  border-top: none !important;
+  border-radius: 0 12px 12px 12px !important;
+  padding: 12px 16px !important;
+}
+
+/* Hover/focus states */
+[data-testid="stExpander"] summary:hover { background: #f7f9ff !important; }
+[data-testid="stExpander"] summary:focus { outline: 2px solid var(--line) !important; outline-offset: 2px; }
+
+/* Force form labels (e.g., Tone) to be black */
+.stSelectbox label,
+.stTextInput label,
+.stTextArea label,
+[data-testid="stMarkdownContainer"] p label {
+  color: var(--ink) !important;
+  font-weight: 700 !important;
+}
+/* Style the spinner container box */
+[data-testid="stSpinner"] {
+  background: var(--lime) !important;   /* your green */
+  border: 2px solid var(--line) !important;
+  border-radius: 12px !important;
+  color: var(--ink) !important;
+  font-weight: 700 !important;
+  padding: 10px 16px !important;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+}
+/* Force the spinner wheel itself to be black */
+[data-testid="stSpinner"] svg,
+[data-testid="stSpinner"] svg * {
+  stroke: var(--ink) !important;   /* makes the ring black */
+  fill: var(--ink) !important;     /* fallback for filled parts */
+  color: var(--ink) !important;
+}
+
