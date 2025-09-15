@@ -349,11 +349,127 @@ html, body, .stApp {
   padding: 10px 16px !important;
   box-shadow: 0 4px 0 rgba(0,0,0,0.15);
 }
-/* Force the spinner wheel itself to be black */
-[data-testid="stSpinner"] svg,
-[data-testid="stSpinner"] svg * {
-  stroke: var(--ink) !important;   /* makes the ring black */
-  fill: var(--ink) !important;     /* fallback for filled parts */
-  color: var(--ink) !important;
+
+
+/* Green pill with text */
+.bf-logo-badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:4px 12px;
+  background: var(--lime);
+  color: var(--ink);
+  border: 3px solid var(--line);
+  border-radius: 14px 22px 22px 14px; /* fishy capsule */
+  font-weight: 900;
+  letter-spacing: .2px;
+  min-width: 108px; /* keeps shape consistent */
 }
 
+/* Chip upgrade */
+.bf-chip{
+  display:inline-block;
+  background:#fff;
+  color:var(--ink);
+  border:2px solid var(--line);
+  border-radius:999px;
+  padding:8px 16px;
+  font-weight:800;
+}
+
+/* Impact bar */
+.bf-stats{
+  display:flex; gap:12px; justify-content:center; margin:14px 0 6px;
+  flex-wrap:wrap;
+}
+.bf-stat{
+  display:flex; flex-direction:column; align-items:center;
+  background:#fff; color:var(--ink);
+  border:2px solid var(--line);
+  border-radius:12px;
+  padding:10px 12px;
+  min-width:160px;
+  box-shadow:0 4px 0 rgba(0,0,0,.12);
+}
+.bf-stat strong{ font-size:18px; line-height:1; }
+.bf-stat span{ font-size:12px; color:var(--ink-dim); margin-top:4px; }
+
+/* Green Deckflow badge */
+.bf-logo-badge {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px 16px;            /* was 4px 12px → more breathing room */
+  background: var(--lime);
+  color: var(--ink);
+  border: 3px solid var(--line);
+  border-radius: 14px 22px 22px 14px;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+/* Hero container spacing */
+.bf-hero {
+  text-align:center;
+  padding:38px 16px 48px;   /* increased bottom padding */
+  position:relative;
+}
+.bf-stats {
+  margin:45px 0 60px;   /* bottom gap below stats */
+}
+
+
+/* Hero list under subtitle */
+.bf-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px auto 24px;
+  max-width: 700px;
+  text-align: left;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.bf-list li {
+  margin: 8px 0;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bf-list li::before {
+  content: "➜";   /* arrow bullet */
+  color: var(--ink);
+  font-weight: 900;
+  margin-right: 6px;
+}
+/* Make text input cursor (caret) black */
+.stTextInput input,
+.stTextArea textarea,
+.stSelectbox input {
+  caret-color: var(--ink) !important;   /* black cursor */
+}
+
+
+/* Center the Step 2 form and make inputs narrower */
+.step-form {
+  max-width: 500px;       /* controls width */
+  margin: 0 auto;         /* center horizontally */
+}
+
+/* Ensure inputs/buttons inside follow the container width */
+.step-form .stTextInput,
+.step-form .stTextArea,
+.step-form .stSelectbox,
+.step-form .stButton {
+  width: 100% !important;
+}
+/* Center step sections */
+.step-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 600px;   /* keeps it neat */
+  width: 100%;
+  text-align: center;
+}
