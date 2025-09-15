@@ -523,11 +523,11 @@ def show_presentation_page() -> None:
     with st.container():
         st.header("Flow")
         st.write(
-            "1 Upload a PDF or PPTX\n"
-            "2 Pick persona and tone, add brand notes\n"
-            "3 The agent extracts proofs and builds a brief\n"
-            "4 The agent generates drafts and applies guardrails\n"
-            "5 You review, export TXT/JSON, and ship"
+            "- Upload a PDF or PPTX\n"
+            "- Pick persona and tone, add brand notes\n"
+            "- The agent extracts proofs and builds a brief\n"
+            "- The agent generates drafts and applies guardrails\n"
+            "- You review, export TXT/JSON, and ship"
         )
 
     with st.container():
