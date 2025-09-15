@@ -497,11 +497,16 @@ def show_presentation_page() -> None:
             st.metric("First draft", "≈ 10 min", "from upload")
         with col3:
             st.metric("Edit cycles", "-50%", "fewer rounds")
-        st.write(
-            "Example: a team of 3 marketers saves 12–18 hours a week. "
-            "At $80/hour, that’s $960–$1,440 in weekly value, plus faster launches."
+        st.markdown(
+        """
+        <div>
+        Example: a team of 3 marketers saves 12–18 hours a week.
+        At $80/hour, that’s $960–$1,440 in weekly value, plus faster launches.
+        </div>
+        """,
+        unsafe_allow_html=True
         )
-        st.markdown("</div>", unsafe_allow_html=True)
+
 
     with st.container():
         st.header("Clean and simple UI and UX")
