@@ -502,7 +502,7 @@ def show_presentation_page() -> None:
         with col1:
             st.metric("Time saved", "4–6 hrs/wk", "per marketer")
         with col2:
-            st.metric("First draft", "≈ 10 min", "from upload")
+            st.metric("First draft", "≈ 1 min", "from upload")
         with col3:
             st.metric("Edit cycles", "-50%", "fewer rounds")
         st.write(
