@@ -264,7 +264,7 @@ def hero_main() -> None:
   <div class="bf-chip">Built for GTM teams • Deck → Outbound in minutes</div>
   <h1 class="bf-h1">Turn Sales Presentations into Outbound Sequences</h1>
   <div class="bf-stats">
-    <div class="bf-stat"><strong>6h → 1m</strong><span>Time to first draft</span></div>
+    <div class="bf-stat"><strong>6h → 5m</strong><span>Time to first draft</span></div>
     <div class="bf-stat"><strong>1 CTA</strong><span>Per email, enforced</span></div>
     <div class="bf-stat"><strong>Proof-tied</strong><span>Claims from your deck</span></div>
   </div>
@@ -502,7 +502,7 @@ def show_presentation_page() -> None:
         with col1:
             st.metric("Time saved", "4–6 hrs/wk", "per marketer")
         with col2:
-            st.metric("First draft", "≈ 1 min", "from upload")
+            st.metric("First draft", "≈ 5 min", "from upload")
         with col3:
             st.metric("Edit cycles", "-50%", "fewer rounds")
         st.write(
